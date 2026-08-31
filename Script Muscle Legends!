@@ -1,0 +1,46 @@
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Настройки
+local TARGET_PLACE_ID = 3623096087 -- ID игры
+
+-- Строчки афто запуска
+local scriptToExecute = [[
+    -- Ожидание чтобы прогрпузилось
+    if not game:IsLoaded() then
+        game.Loaded:Wait()
+    end
+    task.wait(5)
+
+    -- Запуск скрипта
+    print("Запускаю чит Muscle Legends...")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Script-Games/main/Muscle%20Legends.lua"))()
+]]
+
+-- ПРОВЕРКА: Где мы сейчас?
+if game.PlaceId ~= TARGET_PLACE_ID then
+    print("Это не Muscle Legends. Перенаправляю...")
+    
+    -- Передаем скрипт через экран загрузки
+    if queue_on_teleport then
+        queue_on_teleport(scriptToExecute)
+    elseif syn and syn.queue_on_teleport then
+        syn.queue_on_teleport(scriptToExecute) -- Для старых версий Synapse
+    else
+        warn("Твой инжектор слишком слабый и не поддерживает queue_on_teleport!")
+    end
+    
+    -- Телепортируем в игру
+    local success, err = pcall(function()
+        TeleportService:Teleport(TARGET_PLACE_ID, LocalPlayer)
+    end)
+    
+    if not success then
+        warn("Ошибка захода в игру: " .. tostring(err))
+    end
+else
+    -- Если ты изначально зашел в правильную игру и нажал Execute
+    print("Ты уже в Muscle Legends! Запускаю чит напрямую...")
+    assert(loadstring(scriptToExecute))()
+end
