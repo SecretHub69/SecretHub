@@ -3,7 +3,7 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 -- Настройки
-local TARGET_PLACE_ID = 3623096087 -- ID игры
+local TARGET_PLACE_ID = 6816975827 -- ID игры
 
 -- Строчки афто запуска
 local scriptToExecute = [[
@@ -14,13 +14,12 @@ local scriptToExecute = [[
     task.wait(5)
 
     -- Запуск скрипта
-    print("Запускаю чит Muscle Legends...")
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Script-Games/main/Muscle%20Legends.lua"))()
+    print("Запускаю чит Car Suspension Test...")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/SecretHub69/SecretHub/refs/heads/main/Script%20Car%20Suspension%20Test"))()
 ]]
-
 -- ПРОВЕРКА: Где мы сейчас?
 if game.PlaceId ~= TARGET_PLACE_ID then
-    print("Это не Muscle Legends. Перенаправляю...")
+    print("Это не Car Suspension Test. Перенаправляю...")
     
     -- Передаем скрипт через экран загрузки
     if queue_on_teleport then
@@ -41,6 +40,6 @@ if game.PlaceId ~= TARGET_PLACE_ID then
     end
 else
     -- Если ты изначально зашел в правильную игру и нажал Execute
-    print("Ты уже в Muscle Legends! Запускаю чит напрямую...")
+    print("Ты уже в Car Suspension Test! Запускаю чит напрямую...")
     assert(loadstring(scriptToExecute))()
 end
