@@ -1,46 +1,45 @@
-debugX = true
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
-	local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-	local Players = game:GetService("Players")
-	local LocalPlayer = Players.LocalPlayer 
-	local Window = Rayfield:CreateWindow({
-       Name = "NovaFlow Hub",
-       Icon = 0,
-       LoadingTitle = "Secrethub",
-       LoadingSubtitle = "by dfyz3030",
-       Theme = "Ocean",
-       DisableRayfieldPrompts = false,
-       DisableBuildWarnings = false,
-       ConfigurationSaving = {
-          Enabled = false,
-          FolderName = "SecretHub",
-          FileName = "SecretHub"
-       },
-       Discord = {
-          Enabled = false,
-          Invite = "tEap5SgQ",
-          RememberJoins = true
-       },
-       KeySystem = false,
-       KeySettings = {
-          Title = "Untitled",
-          Subtitle = "Key System",
-          Note = "No method of obtaining the key is provided",
-          FileName = "Key",
-          SaveKey = true,
-          GrabKeyFromSite = false,
-          Key = {"Hello"}
-       }
-    })
-    local Tab = Window:CreateTab("Car Suspension Test", 4483362458) -- Title, Image
-	local Section = Tab:CreateSection("Car Suspension Test")
+-- Настройки
+local TARGET_PLACE_ID = 6816975827 -- ID игры
 
-    local Button = Tab:CreateButton({
-        Name = "inf Nitro ",
-        Callback = function()
-            LocalPlayer["RocketFuelValue"].Value = 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-            
-        end,
-    })
+-- Строчки афто запуска
+local scriptToExecute = [[
+    -- Ожидание чтобы прогрпузилось
+    if not game:IsLoaded() then
+        game.Loaded:Wait()
+    end
+    task.wait(5)
 
-    Rayfield:LoadConfiguration()  
+    -- Запуск скрипта
+    print("Запускаю чит Car Suspension Test...")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/SecretHub69/SecretHub/refs/heads/main/Script%20Car%20Suspension%20Test"))()
+]]
+-- ПРОВЕРКА: Где мы сейчас?
+if game.PlaceId ~= TARGET_PLACE_ID then
+    print("Это не Car Suspension Test. Перенаправляю...")
+    
+    -- Передаем скрипт через экран загрузки
+    if queue_on_teleport then
+        queue_on_teleport(scriptToExecute)
+    elseif syn and syn.queue_on_teleport then
+        syn.queue_on_teleport(scriptToExecute) -- Для старых версий Synapse
+    else
+        warn("Твой инжектор слишком слабый и не поддерживает queue_on_teleport!")
+    end
+    
+    -- Телепортируем в игру
+    local success, err = pcall(function()
+        TeleportService:Teleport(TARGET_PLACE_ID, LocalPlayer)
+    end)
+    
+    if not success then
+        warn("Ошибка захода в игру: " .. tostring(err))
+    end
+else
+    -- Если ты изначально зашел в правильную игру и нажал Execute
+    print("Ты уже в Car Suspension Test! Запускаю чит напрямую...")
+    assert(loadstring(scriptToExecute))()
+end
