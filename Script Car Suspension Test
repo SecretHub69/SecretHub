@@ -1,0 +1,46 @@
+debugX = true
+
+	local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+	local Players = game:GetService("Players")
+	local LocalPlayer = Players.LocalPlayer 
+	local Window = Rayfield:CreateWindow({
+       Name = "NovaFlow Hub",
+       Icon = 0,
+       LoadingTitle = "Secrethub",
+       LoadingSubtitle = "by dfyz3030",
+       Theme = "Ocean",
+       DisableRayfieldPrompts = false,
+       DisableBuildWarnings = false,
+       ConfigurationSaving = {
+          Enabled = false,
+          FolderName = "SecretHub",
+          FileName = "SecretHub"
+       },
+       Discord = {
+          Enabled = false,
+          Invite = "tEap5SgQ",
+          RememberJoins = true
+       },
+       KeySystem = false,
+       KeySettings = {
+          Title = "Untitled",
+          Subtitle = "Key System",
+          Note = "No method of obtaining the key is provided",
+          FileName = "Key",
+          SaveKey = true,
+          GrabKeyFromSite = false,
+          Key = {"Hello"}
+       }
+    })
+    local Tab = Window:CreateTab("Car Suspension Test", 4483362458) -- Title, Image
+	local Section = Tab:CreateSection("Car Suspension Test")
+
+    local Button = Tab:CreateButton({
+        Name = "inf Nitro ",
+        Callback = function()
+            LocalPlayer["RocketFuelValue"].Value = 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+            
+        end,
+    })
+
+    Rayfield:LoadConfiguration()  
